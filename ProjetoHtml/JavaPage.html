@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            $(document).ready(function () {
+                $("#lblMensagem").html("Bem vindo ao jQuery");
+
+                $("#btnMain").bind("click", function () {
+                    var x = {
+                        Nome: $("#txtNome").val(),
+                        Email: $("#txtEmail").val(),
+                    };
+
+                    $.ajax({
+                        url: "/Cadastra",
+                        data: x,
+                        success: function () {
+
+                        },
+                        error: function () {
+
+                        }
+                    });
+
+                    console.log(JSON.stringify(x));
+                });
+            });
+
+
+        }());
+
+    </script>
+</head>
+<body>
+    <label id="lblMensagem"></label>
+    <div id="divMain">
+    </div>
+    <input type="text" id="txtNome" />
+    <input type="text" id="txtEmail" />
+    <input type="text" id="txtCPF" />
+    <input type="password" id="txtSenha" />
+    <button id="btnMain">Me click</button>
+</body>
+    
+</html>
