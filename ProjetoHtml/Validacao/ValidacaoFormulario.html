@@ -32,8 +32,30 @@
                     isValid = false;
 
                 //Formulario Valido
-                if (isValid)
-                    $(this).button('loading');
+                if (isValid) {
+
+                    var obj = {
+                        Nome: $(txtNome).val(),
+                        Endereco: $(txtEndereco).val(),
+                        Email: $(txtEmail).val(),
+                        Nacionalidade: $(selNacionalidade).val()
+                    };
+
+                    $.ajax({
+                        url: "/Cliente/Post",
+                        contentType: "application/json; charset=utf8",
+                        type: "Post",
+                        data: JSON.stringify(obj),
+                        success: function (response) {
+
+                        },
+                        error: function () {
+
+                        }
+                    });
+
+                    //$(this).button('loading');
+                }
             });
         });
     </script>
