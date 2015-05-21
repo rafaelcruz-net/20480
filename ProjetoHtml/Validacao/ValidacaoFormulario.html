@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Content/validateBootstrap.css" />
+    <script type="text/javascript"
+        src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript"
+        src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" 
+        src="../Scripts/validBootStrap.js"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $("button").click(function () {
+
+                var txtNome = $("#txtNome");
+                var txtEndereco = $("#txtEndereco");
+                var txtEmail = $("#txtEmail");
+                var selNacionalidade = $("#selNacionalidade");
+                var isValid = true;
+
+                
+
+                if (!validationClass.validateForm(txtNome, "Nome e obrigatorio"))
+                    isValid = false;
+                if (!validationClass.validateForm(txtEndereco, "Endereco e obrigatorio"))
+                    isValid = false;
+                if (!validationClass.validateForm(txtEmail, "Email e obrigatorio"))
+                    isValid = false;
+                if (!validationClass.validateForm(selNacionalidade, "Nacionalidade e obrigatorio"))
+                    isValid = false;
+
+                //Formulario Valido
+                if (isValid)
+                    $(this).button('loading');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Aprendendo validacao de Formulario
+        </h1>
+        <div class="col-md-12">
+            <form>
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text"
+                        class="form-control"
+                        id="txtNome"
+                        placeholder="Digite o seu nome..." />
+                </div>
+                <div class="form-group">
+                    <label>Endereco</label>
+                    <input type="text"
+                        class="form-control"
+                        id="txtEndereco"
+                        placeholder="Digite o seu Endereco..." />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text"
+                        class="form-control"
+                        id="txtEmail"
+                        placeholder="Digite o seu Email..." />
+                </div>
+                <div class="form-group">
+                    <label>Nacionalidade</label>
+                    <select id="selNacionalidade" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="1">Brasileiro</option>
+                        <option value="2">Outros</option>
+                    </select>
+                </div>
+                <button type="button" data-loading-text="Aguarde..."
+                    class="btn btn-primary">
+                    Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
