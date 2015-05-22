@@ -8,8 +8,10 @@
         src="../Scripts/jquery-2.1.4.min.js"></script>
     <script type="text/javascript"
         src="../Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" 
+    <script type="text/javascript"
         src="../Scripts/validBootStrap.js"></script>
+    <script type="text/javascript"
+        src="../Scripts/AjaxRequest.js"></script>
     <script type="text/javascript">
         $().ready(function () {
             $("button").click(function () {
@@ -20,7 +22,7 @@
                 var selNacionalidade = $("#selNacionalidade");
                 var isValid = true;
 
-                
+
 
                 if (!validationClass.validateForm(txtNome, "Nome e obrigatorio"))
                     isValid = false;
@@ -43,29 +45,29 @@
                         Nacionalidade: $(selNacionalidade).val()
                     };
 
-                  
 
-                    $.ajax({
-                        url: "/Cliente/Post",
-                        contentType: "application/json; charset=utf8",
-                        type: "Post",
-                        data: JSON.stringify(obj),
-                        beforeSend: function(){
-                            $("div.alert-success").fadeOut("slow");
-                            $("div.alert-danger").fadeOut("slow");
-                            $("button").button("loading");
-                        },
-                        success: function (response) {
-                            $("div.alert-success").fadeIn("slow");
-                            $("button").button("reset");
-                        },
-                        error: function () {
-                            $("div.alert-danger").fadeIn("slow");
-                            $("button").button("reset");
-                        }
+                    var request = new AjaxRequest("/Cliente/Post", "Post", obj);
+
+                    $("div.alert-success").fadeOut("slow");
+                    $("div.alert-danger").fadeOut("slow");
+                    $("button").button("loading");
+
+                    request.makeRequest()
+                    .success(function () {
+                        $("div.alert-success").fadeIn("slow");
+                        $("button").button("reset")
+                    })
+                    .fail(function () {
+                        $("div.alert-danger").fadeIn("slow");
+                        $("button").button("reset");
                     });
+                   
 
-                    
+
+
+
+
+
                 }
             });
         });
@@ -78,10 +80,10 @@
         <div class="col-md-12">
             <form>
 
-                <div class="alert alert-success" style="display:none;">
+                <div class="alert alert-success" style="display: none;">
                     Cliente cadastrado com sucesso
                 </div>
-                <div class="alert alert-danger" style="display:none;">
+                <div class="alert alert-danger" style="display: none;">
                     Erro ao processar a requisicao tente mais tarde.
                 </div>
                 <div class="form-group">
