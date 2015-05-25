@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet"
+        href="../Content/bootstrap.min.css" />
+    <script type="text/javascript"
+        src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript"
+        src="../Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $fileInput = $("#fileInput");
+            var $output = $("#output");
+
+            $fileInput.change(function () {
+                var file = $(this)[0].files[0];
+                var textType = /text.*/;
+                if (file.type.match(textType)) {
+                    var fileReader = new FileReader();
+                    fileReader.onload = function () {
+                        $output.html(fileReader.result);
+                    };
+
+                    fileReader.readAsText(file);
+                }
+                else
+                {
+                    $output.html("Formato nao suportado");
+                }
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+    <header>
+        Exemplo de Leitura de Arquivo
+    </header>
+    <div>
+        Selecione o Arquivo
+        <input type="file" id="fileInput" />
+    </div>
+    <p id="output">
+    </p>
+</body>
+</html>
