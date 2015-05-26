@@ -8,24 +8,47 @@
         src="../Scripts/jquery-2.1.4.min.js"></script>
     <script type="text/javascript"
         src="../Scripts/bootstrap.min.js"></script>
+    <style>
+        input[type='checkbox'] {
+            margin-left: 7px;
+            margin-bottom: 15px;
+        }
+    </style>
       <script type="text/javascript">
           $(document).ready(function () {
+              var ul = $("#task");
 
-              $(window).load(function () {
+              var clearElement = function ($el) {
+                  $($el).closest("li").fadeOut(function () {
+                      $(this).closest("li").remove();
+                      localStorage.setItem("task", ul.html());
+                  });
+              };
+
+
+              if (localStorage.getItem("task")) {
                   var ul = $("#task");
-                  if (sessionStorage.getItem("task")) {
-                      var task = sessionStorage.getItem("task");
-                      ul.html(task);
-                  }
-              });
-           
+                  var task = localStorage.getItem("task");
+                  ul.html(task);
+              }
+
               $("#btnAdd").click(function () {
                   var text = $("#newTask");
-                  var ul = $("#task");
-                  ul.append("<li>" + $(text).val() + "</li>");
-                  sessionStorage.setItem("task",ul.html());
+
+                  var $input = $("<input type='checkbox' />");
+
+                  $($input).click(function () {
+                      clearElement($(this));
+                  });
+
+                  $(ul).append("<li>" + $(text).val() + "</li>");
+                  $(ul).find("li:last").append($input);
+                  localStorage.setItem("task", ul.html());
               });
 
+              $("input[type='checkbox']").click(function () {
+                  clearElement($(this));
+              });
           });
     </script>
 </head>
