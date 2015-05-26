@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet"
+        href="../Content/bootstrap.min.css" />
+    <script type="text/javascript"
+        src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript"
+        src="../Scripts/bootstrap.min.js"></script>
+
+       <script type="text/javascript"
+           src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#status").html("Encontrando a localizacao");
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                
+                var latlng = new google.maps.LatLng(latitude, longitude);
+                var options = {
+                    zoom: 15,
+                    center: latlng,
+                    mapTypeControl: false,
+                    navigationControlOptions: {
+                        style: google.maps.NavigationControlStyle.SMALL
+                    },
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var mapCanvas = document.getElementById("map");
+                var map = new google.maps.Map(mapCanvas, options);
+
+                new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    title:"Minha posicao atual"
+                });
+
+
+            }, function (error) {
+                $("#status").html(error);
+            });
+           
+        });
+    </script>
+
+</head>
+<body>
+    <header>
+        Exemplo de Geo Localizacao
+    </header>
+    <div>
+        <h3>Status: <span id="status"></span></h3>
+
+        Latitude do Usuario: <span id="latitude"></span>
+        Longitude do Usuario: <span id="longitude"></span>
+    </div>
+
+    <div id="map" style="width:300px;height:500px;">
+
+    </div>
+
+</body>
+</html>

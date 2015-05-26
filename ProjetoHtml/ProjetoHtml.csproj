@@ -123,6 +123,7 @@
     <Content Include="File\leArquivo.html" />
     <Content Include="File\leImagem.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Geolocalizacao\geolocalizacao.html" />
     <Content Include="Global.asax" />
     <Content Include="Icon.png" />
     <Content Include="Index.html" />
@@ -141,6 +142,7 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\AjaxRequest.js" />
     <Content Include="Scripts\validBootStrap.js" />
+    <Content Include="Task\task.html" />
     <Content Include="Validacao\ValidacaoFormulario.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+        <link rel="stylesheet"
+        href="../Content/bootstrap.min.css" />
+    <script type="text/javascript"
+        src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript"
+        src="../Scripts/bootstrap.min.js"></script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+
+              $(window).load(function () {
+                  var ul = $("#task");
+                  if (sessionStorage.getItem("task")) {
+                      var task = sessionStorage.getItem("task");
+                      ul.html(task);
+                  }
+              });
+           
+              $("#btnAdd").click(function () {
+                  var text = $("#newTask");
+                  var ul = $("#task");
+                  ul.append("<li>" + $(text).val() + "</li>");
+                  sessionStorage.setItem("task",ul.html());
+              });
+
+          });
+    </script>
+</head>
+<body>
+    <header>
+        To-do List
+    </header>
+    <article >
+        <p>Para adicionar novos itens a lista, basta apertar enter</p>
+        <label>Nova Tarefa</label>
+        <input type="text"  id="newTask"/>
+        <button id="btnAdd">Adicionar Nova Tarefa</button>
+    </article>
+
+    <article>
+        <ul id="task">
+
+        </ul>
+
+    </article>
+</body>
+</html>
