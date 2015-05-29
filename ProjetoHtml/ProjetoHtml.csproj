@@ -135,8 +135,22 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Responsivo\css\responsivo-adjust.css">
+      <DependentUpon>responsivo-adjust.less</DependentUpon>
+    </Content>
+    <Content Include="Responsivo\css\responsivo-adjust.min.css">
+      <DependentUpon>responsivo-adjust.less</DependentUpon>
+    </Content>
+    <Content Include="Responsivo\css\responsivo.css">
+      <DependentUpon>responsivo.less</DependentUpon>
+    </Content>
+    <Content Include="Responsivo\css\responsivo.less" />
+    <Content Include="Responsivo\css\responsivo-adjust.less" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Responsivo\css\main.css" />
+    <Content Include="Responsivo\css\responsivo.min.css">
+      <DependentUpon>responsivo.less</DependentUpon>
+    </Content>
     <Content Include="Responsivo\responsivo.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
